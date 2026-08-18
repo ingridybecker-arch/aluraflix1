@@ -1,151 +1,656 @@
-<div class="tech-image">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Ilustração de tecnologia -->
-    <svg class="tech-svg" viewBox="0 0 500 500"
-         xmlns="http://www.w3.org/2000/svg">
+    <title>Ingridy Tech</title>
 
-        <!-- Círculos decorativos -->
-        <circle cx="250" cy="250" r="190"
-                fill="none"
-                stroke="#38bdf8"
-                stroke-width="2"
-                opacity="0.25"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            scroll-behavior: smooth;
+        }
 
-        <circle cx="250" cy="250" r="150"
-                fill="none"
-                stroke="#a855f7"
-                stroke-width="2"
-                stroke-dasharray="8 12"
-                opacity="0.35"/>
+        :root {
+            --fundo: #0f1026;
+            --card: rgba(255,255,255,0.08);
+            --texto: #ffffff;
+            --secundario: #bfc4ff;
+            --roxo: #7c3aed;
+            --azul: #06b6d4;
+            --rosa: #ec4899;
+        }
 
-        <!-- Notebook -->
-        <rect x="125" y="130"
-              width="250"
-              height="165"
-              rx="15"
-              fill="#0f172a"
-              stroke="#38bdf8"
-              stroke-width="4"/>
+        body {
+            background: var(--fundo);
+            color: var(--texto);
+            transition: 0.4s;
+            overflow-x: hidden;
+        }
 
-        <!-- Tela -->
-        <rect x="145" y="150"
-              width="210"
-              height="125"
-              rx="8"
-              fill="#020617"/>
+        /* Fundo decorativo */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: #7c3aed;
+            filter: blur(150px);
+            opacity: 0.25;
+            top: -100px;
+            left: -100px;
+            z-index: -1;
+        }
 
-        <!-- Código -->
-        <text x="165" y="180"
-              fill="#38bdf8"
-              font-size="15"
-              font-family="monospace">
-            &lt;developer&gt;
-        </text>
+        body::after {
+            content: "";
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: #06b6d4;
+            filter: blur(150px);
+            opacity: 0.2;
+            bottom: -150px;
+            right: -100px;
+            z-index: -1;
+        }
 
-        <text x="165" y="205"
-              fill="#a78bfa"
-              font-size="14"
-              font-family="monospace">
-            const blog = "Ingridy";
-        </text>
+        /* MENU */
+        nav {
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15,16,38,0.75);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
 
-        <text x="165" y="230"
-              fill="#38bdf8"
-              font-size="14"
-              font-family="monospace">
-            console.log(blog);
-        </text>
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-        <text x="165" y="255"
-              fill="#a78bfa"
-              font-size="15"
-              font-family="monospace">
-            &lt;/developer&gt;
-        </text>
+        .logo span {
+            color: #8b5cf6;
+        }
 
-        <!-- Base do notebook -->
-        <path d="M105 305
-                 L395 305
-                 L420 335
-                 Q425 345 410 345
-                 L90 345
-                 Q75 345 80 335
-                 Z"
-              fill="#1e293b"
-              stroke="#38bdf8"
-              stroke-width="3"/>
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
 
-        <!-- Detalhe central -->
-        <rect x="220" y="315"
-              width="60"
-              height="8"
-              rx="4"
-              fill="#38bdf8"/>
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
 
-        <!-- Ícones flutuantes -->
+        nav a:hover {
+            color: #a78bfa;
+        }
 
-        <!-- </> -->
-        <circle cx="105" cy="105"
-                r="35"
-                fill="#172554"
-                stroke="#38bdf8"
-                stroke-width="2"/>
+        .theme {
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
 
-        <text x="82" y="113"
-              fill="#38bdf8"
-              font-size="22"
-              font-family="monospace">
-            &lt;/&gt;
-        </text>
+        /* HERO */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            padding: 70px 8%;
+        }
 
-        <!-- IA -->
-        <circle cx="395" cy="105"
-                r="35"
-                fill="#312e81"
-                stroke="#a855f7"
-                stroke-width="2"/>
+        .hero-text {
+            max-width: 600px;
+            animation: aparecer 1s ease;
+        }
 
-        <text x="380" y="113"
-              fill="#c084fc"
-              font-size="22"
-              font-family="Arial">
-            AI
-        </text>
+        .tag {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: rgba(124,58,237,0.2);
+            color: #c4b5fd;
+            margin-bottom: 20px;
+        }
 
-        <!-- Código -->
-        <circle cx="95" cy="390"
-                r="35"
-                fill="#172554"
-                stroke="#38bdf8"
-                stroke-width="2"/>
+        h1 {
+            font-size: clamp(45px, 7vw, 80px);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
 
-        <text x="78" y="398"
-              fill="#38bdf8"
-              font-size="20"
-              font-family="monospace">
-            { }
-        </text>
+        h1 span {
+            background: linear-gradient(90deg, #8b5cf6, #22d3ee, #ec4899);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-        <!-- Chip -->
-        <circle cx="405" cy="390"
-                r="35"
-                fill="#312e81"
-                stroke="#a855f7"
-                stroke-width="2"/>
+        .hero p {
+            font-size: 20px;
+            line-height: 1.7;
+            color: var(--secundario);
+            margin-bottom: 30px;
+        }
 
-        <text x="391" y="398"
-              fill="#c084fc"
-              font-size="20"
-              font-family="Arial">
-            ⚙
-        </text>
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
-        <!-- Pontos luminosos -->
-        <circle cx="70" cy="250" r="5" fill="#38bdf8"/>
-        <circle cx="430" cy="250" r="5" fill="#a855f7"/>
-        <circle cx="250" cy="65" r="5" fill="#38bdf8"/>
-        <circle cx="250" cy="435" r="5" fill="#a855f7"/>
+        .btn {
+            padding: 14px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-    </svg>
+        .primary {
+            color: white;
+            background: linear-gradient(90deg, #7c3aed, #06b6d4);
+            box-shadow: 0 10px 30px rgba(124,58,237,0.3);
+        }
 
-</div>
+        .secondary {
+            color: white;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ILUSTRAÇÃO */
+        .hero-image {
+            width: 430px;
+            max-width: 100%;
+            animation: flutuar 4s ease-in-out infinite;
+        }
+
+        .tech-card {
+            padding: 25px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            backdrop-filter: blur(20px);
+        }
+
+        .tech-card svg {
+            width: 100%;
+        }
+
+        /* POSTS */
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--secundario);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            padding: 30px;
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 25px;
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #8b5cf6;
+            box-shadow: 0 20px 50px rgba(124,58,237,0.2);
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            font-size: 23px;
+        }
+
+        .card p {
+            color: var(--secundario);
+            line-height: 1.6;
+        }
+
+        /* POST PRINCIPAL */
+        .post {
+            max-width: 900px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 30px;
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .author {
+            color: #a78bfa;
+            margin: 10px 0 25px;
+        }
+
+        .post p {
+            color: var(--secundario);
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        .actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .like {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            background: rgba(236,72,153,0.15);
+            color: #f9a8d4;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #9ca3af;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes flutuar {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 800px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image {
+                width: 350px;
+            }
+        }
+
+        /* MODO CLARO */
+        body.light {
+            --fundo: #f5f3ff;
+            --card: rgba(255,255,255,0.8);
+            --texto: #18181b;
+            --secundario: #52525b;
+        }
+
+        body.light nav {
+            background: rgba(245,243,255,0.8);
+        }
+
+        body.light nav a {
+            color: #18181b;
+        }
+
+        body.light .theme {
+            color: #18181b;
+        }
+
+        body.light .secondary {
+            color: #18181b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <nav>
+        <div class="logo">Ingridy<span>Tech</span> 🚀</div>
+
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#conteudos">Conteúdos</a></li>
+            <li><a href="#post">Meu Post</a></li>
+        </ul>
+
+        <button class="theme" onclick="mudarTema()">🌙</button>
+    </nav>
+
+
+    <!-- INÍCIO -->
+    <main id="inicio">
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <span class="tag">💻 Tecnologia • Programação • Criatividade</span>
+
+                <h1>
+                    Bem-vindo ao
+                    <span>Ingridy Tech</span>
+                </h1>
+
+                <p>
+                    Um espaço para compartilhar conhecimentos,
+                    dicas de programação e curiosidades incríveis
+                    do mundo da tecnologia.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="#post" class="btn primary">
+                        🚀 Conhecer o blog
+                    </a>
+
+                    <button class="btn secondary" onclick="mostrarMensagem()">
+                        ✨ Clique aqui
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- IMAGEM / ILUSTRAÇÃO -->
+            <div class="hero-image">
+
+                <div class="tech-card">
+
+                    <svg viewBox="0 0 500 400"
+                         xmlns="http://www.w3.org/2000/svg">
+
+                        <defs>
+                            <linearGradient id="gradiente"
+                                x1="0%" y1="0%"
+                                x2="100%" y2="100%">
+
+                                <stop offset="0%" stop-color="#7c3aed"/>
+                                <stop offset="50%" stop-color="#06b6d4"/>
+                                <stop offset="100%" stop-color="#ec4899"/>
+
+                            </linearGradient>
+                        </defs>
+
+                        <!-- círculo -->
+                        <circle cx="250"
+                                cy="200"
+                                r="145"
+                                fill="url(#gradiente)"
+                                opacity="0.2"/>
+
+                        <!-- computador -->
+                        <rect x="105"
+                              y="100"
+                              width="290"
+                              height="190"
+                              rx="20"
+                              fill="#17172f"
+                              stroke="#8b5cf6"
+                              stroke-width="5"/>
+
+                        <!-- tela -->
+                        <rect x="125"
+                              y="120"
+                              width="250"
+                              height="145"
+                              rx="10"
+                              fill="#080817"/>
+
+                        <!-- código -->
+                        <text x="150"
+                              y="160"
+                              fill="#22d3ee"
+                              font-size="22">
+                            &lt;/&gt;
+                        </text>
+
+                        <text x="150"
+                              y="195"
+                              fill="#a78bfa"
+                              font-size="18">
+                            console.log
+                        </text>
+
+                        <text x="150"
+                              y="225"
+                              fill="#f472b6"
+                              font-size="18">
+                            "Hello Tech!"
+                        </text>
+
+                        <!-- base -->
+                        <path d="M80 315
+                                 Q250 285 420 315
+                                 L400 335
+                                 L100 335 Z"
+                              fill="#272746"/>
+
+                        <!-- brilho -->
+                        <circle cx="390"
+                                cy="80"
+                                r="8"
+                                fill="#22d3ee"/>
+
+                        <circle cx="100"
+                                cy="330"
+                                r="6"
+                                fill="#ec4899"/>
+
+                    </svg>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTEÚDOS -->
+        <section id="conteudos">
+
+            <div class="section-title">
+                <h2>O que você vai encontrar? ✨</h2>
+                <p>Conteúdos para aprender e explorar tecnologia.</p>
+            </div>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="icon">💻</div>
+                    <h3>Programação</h3>
+                    <p>
+                        Dicas, exemplos e conteúdos para
+                        aprender programação de forma simples.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">🤖</div>
+                    <h3>Tecnologia</h3>
+                    <p>
+                        Curiosidades e novidades sobre o
+                        universo tecnológico.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">🚀</div>
+                    <h3>Projetos</h3>
+                    <p>
+                        Ideias e experiências para colocar
+                        seus conhecimentos em prática.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- POST -->
+        <section id="post">
+
+            <div class="post">
+
+                <span class="tag">📌 Primeiro post</span>
+
+                <h2>Meu primeiro post</h2>
+
+                <div class="author">
+                    Por: Ingridy Becker
+                </div>
+
+                <p>
+                    Boas-vindas ao meu novo blog! 👋
+                </p>
+
+                <br>
+
+                <p>
+                    Aqui vou compartilhar dicas de programação,
+                    curiosidades da área de tecnologia e experiências
+                    enquanto aprendo e desenvolvo novos projetos.
+                </p>
+
+                <div class="actions">
+
+                    <button class="like" onclick="curtir()">
+                        ❤️ Curtir <span id="contador">0</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- RODAPÉ -->
+    <footer>
+        <p>Feito com 💜 e código por Ingridy</p>
+        <p>© 2026 Ingridy Tech</p>
+    </footer>
+
+
+    <script>
+
+        // MODO ESCURO / CLARO
+        function mudarTema() {
+
+            document.body.classList.toggle("light");
+
+            const botao = document.querySelector(".theme");
+
+            if (document.body.classList.contains("light")) {
+                botao.innerHTML = "☀️";
+            } else {
+                botao.innerHTML = "🌙";
+            }
+        }
+
+
+        // BOTÃO INTERATIVO
+        function mostrarMensagem() {
+
+            alert(
+                "🚀 Obrigado por visitar o Ingridy Tech! " +
+                "Prepare-se para aprender muita coisa sobre tecnologia."
+            );
+
+        }
+
+
+        // CURTIDAS
+        let curtidas = 0;
+
+        function curtir() {
+
+            curtidas++;
+
+            document.getElementById("contador").innerText =
+                curtidas;
+
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,17 +1,545 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Ingridy Tech</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0f172a;
+            color: #f8fafc;
+            transition: 0.4s;
+        }
+
+        /* MENU */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: #38bdf8;
+        }
+
+        .theme {
+            background: #38bdf8;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        /* HERO */
+        .hero {
+            max-width: 1100px;
+            margin: auto;
+            min-height: 600px;
+            padding: 80px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .hero-text {
+            max-width: 580px;
+        }
+
+        .hero-text span {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            line-height: 1.1;
+            margin: 15px 0;
+        }
+
+        .hero p {
+            color: #cbd5e1;
+            font-size: 19px;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #38bdf8;
+            color: #082f49;
+        }
+
+        .primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(56,189,248,0.35);
+        }
+
+        .secondary {
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+        }
+
+        .secondary:hover {
+            background: #38bdf8;
+            color: #082f49;
+        }
+
+        /* ILUSTRAÇÃO */
+        .tech-image {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 30% 30%, #38bdf8, transparent 30%),
+                radial-gradient(circle at 70% 70%, #a855f7, transparent 35%),
+                linear-gradient(135deg, #172554, #312e81);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            box-shadow:
+                0 0 80px rgba(56,189,248,0.25);
+
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .code-box {
+            width: 250px;
+            padding: 25px;
+            background: rgba(15,23,42,0.85);
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            font-family: monospace;
+            color: #38bdf8;
+        }
+
+        .code-box p {
+            color: #a78bfa;
+            font-family: monospace;
+            margin: 7px 0;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* POSTS */
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 70px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 38px;
+            margin-bottom: 45px;
+        }
+
+        .section-title span {
+            color: #38bdf8;
+        }
+
+        .posts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #38bdf8;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+        }
+
+        .icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #38bdf8, #6366f1);
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: rgba(56,189,248,0.12);
+            color: #38bdf8;
+            font-size: 13px;
+        }
+
+        /* SOBRE */
+        .about {
+            background: linear-gradient(
+                135deg,
+                rgba(56,189,248,0.08),
+                rgba(168,85,247,0.08)
+            );
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 750px;
+            margin: auto;
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 35px;
+            background: #020617;
+            color: #94a3b8;
+        }
+
+        /* MODO CLARO */
+        body.light {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        body.light header {
+            background: rgba(255,255,255,0.9);
+        }
+
+        body.light .menu a {
+            color: #0f172a;
+        }
+
+        body.light .hero p,
+        body.light .card p,
+        body.light .about p {
+            color: #475569;
+        }
+
+        body.light .card {
+            background: white;
+        }
+
+        body.light footer {
+            background: #e2e8f0;
+        }
+
+        /* CELULAR */
+        @media (max-width: 800px) {
+            .menu {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .tech-image {
+                width: 300px;
+                height: 300px;
+            }
+
+            .posts {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                padding: 30px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<h1>ingridy teste tech</h1>
-<p>vou compartilhar conhecimentos sobre tecnologia e programação</p>
+
+<header>
+    <nav>
+        <div class="logo">Ingridy<span>Tech.</span></div>
+
+        <ul class="menu">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#posts">Posts</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+        </ul>
+
+        <button class="theme" onclick="mudarTema()">🌙</button>
+    </nav>
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+
+        <div class="hero-text">
+            <span>👋 BEM-VINDO AO MEU BLOG</span>
+
+            <h1>
+                Tecnologia,
+                programação &
+                criatividade.
+            </h1>
+
+            <p>
+                Um espaço para compartilhar conhecimentos,
+                dicas de programação e curiosidades sobre
+                o incrível mundo da tecnologia.
+            </p>
+
+            <div class="buttons">
+                <a href="#posts" class="btn primary">
+                    Explorar posts →
+                </a>
+
+                <a href="#sobre" class="btn secondary">
+                    Sobre mim
+                </a>
+            </div>
+        </div>
+
+
+        <div class="tech-image">
+
+            <div class="code-box">
+                <p>&lt;developer&gt;</p>
+                <div>const blog = "Ingridy";</div>
+                <div>console.log(blog);</div>
+                <p>&lt;/developer&gt;</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- POSTS -->
+    <section id="posts">
+
+        <h2 class="section-title">
+            Últimos <span>posts</span>
+        </h2>
+
+        <div class="posts">
+
+            <article class="card">
+
+                <div class="icon">💻</div>
+
+                <h3>
+                    Meu primeiro post
+                </h3>
+
+                <p>
+                    Boas-vindas ao meu novo blog!
+                    Aqui vou compartilhar dicas de
+                    programação e curiosidades da
+                    área de tecnologia.
+                </p>
+
+                <span class="tag">
+                    #Tecnologia
+                </span>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="icon">🚀</div>
+
+                <h3>
+                    Como começar a programar?
+                </h3>
+
+                <p>
+                    Descubra os primeiros passos para
+                    entrar no mundo da programação e
+                    escolher sua primeira linguagem.
+                </p>
+
+                <span class="tag">
+                    #Programação
+                </span>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="icon">🤖</div>
+
+                <h3>
+                    Curiosidades sobre IA
+                </h3>
+
+                <p>
+                    Entenda de forma simples como a
+                    inteligência artificial está mudando
+                    nossa relação com a tecnologia.
+                </p>
+
+                <span class="tag">
+                    #InteligênciaArtificial
+                </span>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- SOBRE -->
+    <section id="sobre">
+
+        <div class="about">
+
+            <h2 class="section-title">
+                Sobre <span>mim</span>
+            </h2>
+
+            <p>
+                Olá! Eu sou Ingridy 👩‍💻
+                Este blog nasceu para compartilhar
+                minha jornada pelo universo da tecnologia,
+                programação e inovação.
+                <br><br>
+                Aqui você encontrará conteúdos simples,
+                dicas, projetos e descobertas que podem
+                ajudar outras pessoas que também gostam
+                de tecnologia.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>
+        © 2026 Ingridy Tech • Feito com 💙 e código
+    </p>
+</footer>
+
+
+<script>
+
+    function mudarTema() {
+
+        document.body.classList.toggle("light");
+
+        const botao = document.querySelector(".theme");
+
+        if (document.body.classList.contains("light")) {
+            botao.innerHTML = "☀️";
+        } else {
+            botao.innerHTML = "🌙";
+        }
+    }
+
+</script>
+
 </body>
 </html>
-<main>
-<h2>Meu primeiro post</h2>
-<p>Por: Ingridy Becker</p>
-<p>Boas-vindas ao meu novo blog! Aqui vou compartilhar dicas de programação e curiosidades da área de tecnologia.</p>
-</main>
